@@ -1,0 +1,15 @@
+.add-item-container{
+    margin: 2rem 0rem;
+
+    mat-form-field {
+        padding: 0.3rem;
+    }
+    mat-card {
+         margin: 1rem 0rem;
+    }
+
+    mat-spinner {
+        margin: 0 auto;
+        display: block;
+    }
+}

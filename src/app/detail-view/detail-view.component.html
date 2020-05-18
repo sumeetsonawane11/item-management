@@ -1,0 +1,69 @@
+<mat-card class='detail-view-container'>
+    <mat-spinner *ngIf='!isLoading'></mat-spinner>
+
+    <mat-card class='list-table' *ngIf='isLoading'>
+        <div class="header-text">
+            <mat-label>Detail List</mat-label>
+        </div>
+
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <div class='list-container'>
+                    <mat-label>Item Name</mat-label>
+                    <span>{{ data.name}}</span>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <div class='list-container'>
+                    <mat-label>Item Type</mat-label>
+                    <span>{{ data.type}}</span>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <div class='list-container'>
+                    <mat-label>Provider</mat-label>
+                    <span>{{ data.provider}}</span>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <div class='list-container'>
+                    <mat-label>Vendor</mat-label>
+                    <span>{{ data.vendor}}</span>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <div class='list-container'>
+                    <mat-label>Quantity</mat-label>
+                    <span>{{ data.qty}}</span>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+        </mat-list>
+        <!-- <div class="field-container" *ngIf='data'>
+            <div class="field-wrapper">
+                <mat-label>Item Name</mat-label>
+                <span>{{data.name}}</span>
+            </div>
+            <div class="field-wrapper">
+                <mat-label>Item Type</mat-label>
+                <span>{{data.type}}</span>
+            </div>
+            <div class="field-wrapper">
+                <mat-label>Provider</mat-label>
+                <span>{{data.provider}}</span>
+            </div>
+            <div class="field-wrapper">
+                <mat-label>Vendor</mat-label>
+                <span>{{data.vendor}}</span>
+            </div>
+            <div class="field-wrapper">
+                <mat-label>Quantity</mat-label>
+                <span>{{data.qty}}</span>
+            </div>
+        </div> -->
+    </mat-card>
+</mat-card>

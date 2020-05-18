@@ -1,0 +1,35 @@
+.dashboard-table-container{
+    // position: relative;
+    button{
+        margin: 1rem 1rem 1rem 0rem;
+    }
+        
+    div.table-header {
+        box-sizing: border-box;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        font-family: Roboto,"Helvetica Neue",sans-serif;
+    }
+
+    table {
+        width: 100%;   
+        tr.mat-row{
+            cursor: pointer;
+        }    
+    }
+    mat-spinner {
+        display: block;
+        margin: 0 auto;  
+        // position: absolute;
+        // top: 25%;
+        // left: 45%;
+        // z-index: 100;
+    }
+    .no-data-available{
+        text-align: center;
+    }
+   
+   
+}

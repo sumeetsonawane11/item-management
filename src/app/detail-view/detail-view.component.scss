@@ -1,0 +1,38 @@
+.detail-view-container {
+    margin : 2rem 0;
+    // .field-container{ 
+    //     width: 50%;
+    //     margin: 0 auto;
+    //     display: flex;
+    //     flex-direction: column;
+    
+    //     .field-wrapper{
+    //         display: flex;
+    //         justify-content: space-between;
+    //         margin: 0.5rem 0rem;
+    //         border-bottom: 1px solid lightsteelblue;
+    //         padding: 0.5rem 0rem;
+    //     }
+    // }
+
+  
+    .list-table{
+        .header-text {
+            text-align: center;
+            font-size: 2rem;
+            padding: 2rem 0rem;
+        }
+        mat-list {
+            .list-container {
+
+                mat-label {
+                    font-weight: bold;
+                }
+                display: flex;
+                justify-content: space-between;
+                width: 70%;
+                margin: 0 auto;
+            }
+        }
+    }
+}

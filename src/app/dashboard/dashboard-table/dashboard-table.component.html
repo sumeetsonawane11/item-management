@@ -1,0 +1,49 @@
+<div class='dashboard-table-container'>
+
+  <div>
+    <mat-spinner *ngIf='isLoading'></mat-spinner>
+    <mat-card class='no-data-available' *ngIf='!isLoading && dataSource?.length === 0 '>
+      <p> No Data Available yet!</p>
+    </mat-card>
+  </div>
+
+  <mat-card *ngIf='!isLoading && dataSource?.length> 0'>
+    <div class='table-header'>Dashboard</div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Item Name</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.name}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Item Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef> Location </th>
+          <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="qty">
+          <th mat-header-cell *matHeaderCellDef> Qty </th>
+          <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
+        </ng-container>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="onRowSelect(row)"></tr>
+    </table>
+  </mat-card>
+
+  <mat-paginator [length]='totalItems' [pageSize]='ItemsPerPage' [pageSizeOptions]='pageSizeOptions'
+    (page)='onChangedPage($event)' *ngIf='dataSource?.length > 0'>
+  </mat-paginator>
+</div>
