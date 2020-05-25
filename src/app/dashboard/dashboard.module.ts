@@ -6,7 +6,6 @@ import { DashboardTableComponent } from './dashboard-table/dashboard-table.compo
 import { AddItemComponent } from './add-item/add-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
-// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [DashboardComponent, DashboardTableComponent, AddItemComponent],

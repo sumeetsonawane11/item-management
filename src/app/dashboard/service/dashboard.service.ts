@@ -4,6 +4,7 @@ import { Item, ActiveElements } from '../../shared/models/item.model';
 import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 const BACKEND_URL = environment.apiUrl + '/item/';
 
@@ -13,8 +14,8 @@ const BACKEND_URL = environment.apiUrl + '/item/';
 export class DashboardService {
   private items: ActiveElements[] = [];
   private getItemsSubject = new Subject<{ items: ActiveElements[], maxCount?: number, isNewlyCreated: boolean }>();
-
-  constructor(private http: HttpClient) { }
+  private getErrorSub = new Subject<{ error: Error }>();
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   getItems(itemsPerPage: number, currentPage: number) {
     const queryParams = `?pagesize=${itemsPerPage}&page=${currentPage}`;
@@ -38,8 +39,12 @@ export class DashboardService {
     return this.getItemsSubject.asObservable();
   }
 
+  getErrorHandler() {
+    return this.getErrorSub.asObservable()
+  }
+
   CreateItem(itemObj) {
-    return this.http.post<{ message: string, result: { data: Item, maxItems: number, id: string } }>(BACKEND_URL + 'create', itemObj)
+    return this.http.post<{ message: string, result: { data: Item, maxItems: number, id: string } }>(BACKEND_URL + 'creates', itemObj)
       .pipe(map((newItem) => {
         return {
           transformedData: {
@@ -55,10 +60,13 @@ export class DashboardService {
       }))
       .subscribe((item) => {
         this.items.push(item.transformedData);
-
         this.getItemsSubject.next({ items: [...this.items], maxCount: item.maxItems, isNewlyCreated: true });
-        //this.createItemSubject.next();
-      });
+        this.toastr.success('Item created successfully');
+      },
+        error => {
+          this.getErrorSub.next(error);
+          this.toastr.error('Item creation failed')
+        });
   }
 
   getItemDetails(id: string) {

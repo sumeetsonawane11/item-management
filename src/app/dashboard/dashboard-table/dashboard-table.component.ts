@@ -52,6 +52,7 @@ export class DashboardTableComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.isLoading = true;
       });
+
   }
 
   addColumn() {

@@ -21,7 +21,8 @@ export class AddItemComponent implements OnInit, OnDestroy {
   public itemType: ItemType[] = [];
   public isLoading = false;
   public getItemSubs: Subscription;
-  isUserAuthenticated = false;
+  public isUserAuthenticated = false;
+  public getErrorSubs: Subscription;
   constructor(private dashBoardService: DashboardService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -40,10 +41,18 @@ export class AddItemComponent implements OnInit, OnDestroy {
       'availableDate': new FormControl(null, { validators: [Validators.required] }),
       'location': new FormControl(null, { validators: [Validators.required] })
     });
+
     this.getItemSubs = this.dashBoardService.getItemCreatedHandler()
       .subscribe(() => {
         this.form.reset();
         this.removeValidators();
+        this.isLoading = false;
+        this.isAddNewformVisible = true;
+      })
+
+
+    this.getErrorSubs = this.dashBoardService.getErrorHandler()
+      .subscribe((error) => {
         this.isLoading = false;
         this.isAddNewformVisible = true;
       })
@@ -78,5 +87,6 @@ export class AddItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.getItemSubs.unsubscribe();
+    this.getErrorSubs.unsubscribe();
   }
 }
